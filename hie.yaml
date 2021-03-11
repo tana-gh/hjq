@@ -1,2 +1,10 @@
 cradle:
-  stack:
+  cabal:
+    - path: "src"
+      component: "lib:hjq"
+
+    - path: "app/Main.hs"
+      component: "hjq:exe:hjq"
+
+    - path: "test"
+      component: "hjq:test:hjq-test"
