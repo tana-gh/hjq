@@ -34,5 +34,5 @@ executeQuery :: JqQuery -> Value -> Either T.Text Value
 executeQuery (JqQueryObject o) v
     = fmap (Object . H.fromList) . traverse sequence $ fmap (fmap $ flip executeQuery v) o
 executeQuery (JqQueryArray l) v
-    = fmap (Array . V.fromList) . sequence $ fmap (`executeQuery` v) l
+    = Array . V.fromList <$> mapM (`executeQuery` v) l
 executeQuery (JqQueryFilter f) v = applyFilter f v

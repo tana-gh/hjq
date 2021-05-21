@@ -11,10 +11,10 @@ main :: IO ()
 main = do
     args <- getArgs
     case args of
-        query : file : [] -> do
+        [query, file] -> do
             json <- B.readFile file
             printResult $ hjq json (T.pack query)
-        query : [] -> do
+        [query] -> do
             json <- B.getContents
             printResult $ hjq json (T.pack query)
         _ -> do
